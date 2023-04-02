@@ -1,5 +1,5 @@
 import random
-import data
+from data import data
 
 logo = """
     __  ___       __             
@@ -20,3 +20,15 @@ vs = """
 | |/ (__  ) 
 |___/____(_)
 """
+
+condi = True
+score = 0
+while condi == True:
+    print(logo)
+    rando = random.choice(data)
+    print(f"Compare A: {rando['name']}, {rando['description']}, {rando['country']}")
+    print(vs)
+    rando2 = random.choice(data)
+    print(f"Compare B: {rando2['name']}, {rando2['description']}, {rando2['country']}")
+    guess = input("Who has more follower? Type 'A' or 'B'  ")
+    
