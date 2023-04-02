@@ -1,5 +1,6 @@
 import random
 from data import data
+import os
 
 logo = """
     __  ___       __             
@@ -21,6 +22,15 @@ vs = """
 |___/____(_)
 """
 
+def check_answer(guess, a_followers, b_followers):
+    """Checks followers against user's guess 
+    and returns True if they got it right.
+    Or False if they got it wrong.""" 
+    if a_followers > b_followers:
+        return guess == "a"
+    else:
+        return guess == "b"
+
 condi = True
 score = 0
 while condi == True:
@@ -30,5 +40,16 @@ while condi == True:
     print(vs)
     rando2 = random.choice(data)
     print(f"Compare B: {rando2['name']}, {rando2['description']}, {rando2['country']}")
-    guess = input("Who has more follower? Type 'A' or 'B'  ")
-    
+    guess = input("Who has more follower? Type 'A' or 'B'  ").lower()
+
+    is_correct = check_answer(guess, rando['follower_count'], rando2['follower_count'])
+
+    clear = lambda: os.system('clear')
+    clear()
+    if is_correct:
+      score += 1
+      print(f"You're right! Current score: {score}.")
+    else:
+      condi = False
+      print(logo)
+      print(f"Sorry, that's wrong. Final score: {score}")
